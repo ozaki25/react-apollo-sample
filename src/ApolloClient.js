@@ -1,23 +1,4 @@
 import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag';
-
-const query = gql`
-  {
-    organization(login: "apollographql") {
-      repositories(first: 5) {
-        nodes {
-          id
-          name
-          url
-          viewerHasStarred
-          stargazers {
-            totalCount
-          }
-        }
-      }
-    }
-  }
-`;
 
 const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
@@ -30,9 +11,4 @@ const client = new ApolloClient({
   },
 });
 
-async function run() {
-  const result = await client.query({ query });
-  console.log(result);
-}
-
-export default { run };
+export default { client };
