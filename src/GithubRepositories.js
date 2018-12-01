@@ -1,8 +1,10 @@
 import React from 'react';
 
-const GithubRepositories = ({ data: { loading, organization } }) =>
+const GithubRepositories = ({ data: { loading, error, organization } }) =>
   loading ? (
     <p>Loading...</p>
+  ) : error ? (
+    <p>{error.toString()}</p>
   ) : (
     <ul>
       {organization.repositories.nodes.map(repo => (
